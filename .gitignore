@@ -1,0 +1,7 @@
+.idea
+*.iml
+target
+node_modules
+.vs
+dotnet/EventHubsForKafkaSample/obj
+dotnet/EventHubsForKafkaSample/bin
