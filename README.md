@@ -5,3 +5,4 @@ These samples demostrate how to consume messages from Azure Event Hubs using Kaf
 * [Java](java/README.md)  
 * [Node.js](js/README.md)  
 * [.NET](dotnet/README.md)  
+* [Python](python/README.md)  
