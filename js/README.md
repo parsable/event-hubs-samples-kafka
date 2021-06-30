@@ -10,19 +10,13 @@ This sample uses the [KafkaJS](https://github.com/tulios/kafkajs) library.
 
 ## Configuration
 
-Replace placeholders with your Event Hubs namespace, client id, client secret, and tenant id:
-
-```javascript
-const namespace = "<REPLACE WITH YOUR EVENT HUBS NAMESPACE>";
-const tenantId = "<REPLACE WITH YOUR TENANT ID>";
-const msalConfig = {
-    auth: {
-        authority: "https://login.microsoftonline.com/" + tenantId,
-        clientId: "<REPLACE WITH YOUR CLIENT ID>",
-        clientSecret: "<REPLACE WITH YOUR CLIENT SECRET>",
-    }
-};
-
+Set environment variables to your values:
+```shell
+DATA_FEED_CLUSTER
+DATA_FEED_TOPIC
+DATA_FEED_TENANT_ID
+DATA_FEED_CLIENT_ID
+DATA_FEED_CLIENT_SECRET
 ```
 
 ## Run consumer
