@@ -56,7 +56,7 @@ class DataFeedConsumer {
     }
 
     async azureAuth() {
-        let token = await this.cca.acquireTokenByClientCredential(tokenRequest);
+        let token = await this.cca.acquireTokenByClientCredential(this.tokenRequest);
         console.log("Azure token acquired")
         return token;
     }
