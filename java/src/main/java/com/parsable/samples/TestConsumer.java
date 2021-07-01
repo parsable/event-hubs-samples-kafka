@@ -16,11 +16,11 @@ import static java.util.Collections.singleton;
 
 @Slf4j
 public class TestConsumer {
-    public static final String NAMESPACE = "dstafichuk-test";
+    public static final String NAMESPACE = "<REPLACE>";
     public static final String TOPIC = "test";
-    public static final String TENANT_ID = "79486ac3-61d0-49ed-8c0c-ad2633b6307e";
-    public static final String CLIENT_ID = "dd82a810-58cf-42b0-a981-a07d3231bd0b";
-    public static final String CLIENT_SECRET = "Fg~vNa-08zAp.fqOkLgxDwX8q2gtANI58~";
+    public static final String TENANT_ID = "<REPLACE>";
+    public static final String CLIENT_ID = "<REPLACE>";
+    public static final String CLIENT_SECRET = "<REPLACE>";
 
     public static void main(String[] args) {
         try (Consumer<String, String> consumer = createConsumer(
