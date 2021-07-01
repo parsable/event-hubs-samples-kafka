@@ -1,8 +1,11 @@
 {
-  "name": "kafka_node",
-  "version": "1.0.0",
-  "description": "This quickstart will show how to create and connect to an Event Hubs Kafka endpoint using an example producer and consumer written in Node. Azure Event Hubs for Apache Kafka Ecosystems supports [Apache Kafka version 1.0](https://kafka.apache.org/10/documentation.html) and later.",
-  "main": "index.js",
+  "name": "@wearableintelligence/data-feed-consumer",
+  "version": "0.0.1",
+  "description": "Parsable Data Feed command line consumer",
+  "main": "src/index.js",
+  "bin": {
+    "datafeedconsumer": "./bin/run"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +13,24 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@azure/msal-node": "^1.1.0",
-    "kafkajs": "^1.15.0"
+    "@oclif/command": "^1.8.0",
+    "@oclif/config": "^1.17.0",
+    "@oclif/plugin-help": "^3.2.2",
+    "@azure/msal-node": "^1.2.0",
+    "kafkajs": "^1.15.0",
+    "cli-ux": "^5.6.2"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1.26.0"
+  },
+  "files": [
+    "/bin",
+    "/src"
+  ],
+  "oclif": {
+    "bin": "datafeedconsumer"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
