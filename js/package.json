@@ -1,6 +1,6 @@
 {
   "name": "@wearableintelligence/data-feed-consumer",
-  "version": "0.0.1-alpha-1",
+  "version": "0.0.1",
   "description": "Parsable Data Feed command line consumer",
   "main": "src/index.js",
   "bin": {
