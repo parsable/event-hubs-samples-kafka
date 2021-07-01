@@ -138,4 +138,8 @@ ConsumeCommand.flags = {
     group: flags.string({char: 'g', description: 'Consumer group', default: 'data-feed-cli-consumer'}),
 }
 
+ConsumeCommand.examples = [
+    'datafeedconsumer -n my-eventhubs-namespace -h my-hub-name -t 793f32ca-fc7a-499a-ae14-eb5adee63165 -c 8742ab2d-6652-4d1b-a946-ed571f2bd39a -s my-client-secret'
+];
+
 module.exports = ConsumeCommand
