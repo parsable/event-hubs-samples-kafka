@@ -9,7 +9,7 @@ class DataFeedConsumer {
     clientSecret;
     tokenRequest;
 
-    constructor(namespace, topic, tenantId, clientId, clientSecret) {
+    constructor(namespace, topic, tenantId, clientId, clientSecret, group) {
         this.namespace = namespace;
         this.topic = topic;
         this.tenantId = tenantId;
@@ -18,6 +18,7 @@ class DataFeedConsumer {
         this.tokenRequest = {
             scopes: ['https://' + this.namespace + '.servicebus.windows.net/.default'],
         };
+        this.group = group ? group : 'data-feed-cli-consumer';
     }
 
     createKafka() {
@@ -41,7 +42,7 @@ class DataFeedConsumer {
 
     createConsumer() {
         const kafka = this.createKafka();
-        return kafka.consumer({groupId: 'test-js-consumer'});
+        return kafka.consumer({groupId: this.group});
     }
 
     async azureAuth() {

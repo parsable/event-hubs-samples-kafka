@@ -35,6 +35,7 @@ ConsumeCommand.flags = {
     tenant: flags.string({char: 't', description: 'Tenant ID', required: true}),
     client: flags.string({char: 'c', description: 'Client ID', required: true}),
     secret: flags.string({char: 's', description: 'Client secret', required: true}),
+    group: flags.string({char: 'g', description: 'Consumer group'}),
 }
 
 module.exports = ConsumeCommand
