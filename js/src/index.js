@@ -124,8 +124,7 @@ class ConsumeCommand extends Command {
     }
 }
 
-ConsumeCommand.description = `Data Feed consumer
-...
+ConsumeCommand.description = `Data Feed Consumer
 A simple consumer which allows performing sanity checks. It connects to an Event Hub and listens for new messages.
 Messages logged to the console.
 `
@@ -136,7 +135,7 @@ ConsumeCommand.flags = {
     tenant: flags.string({char: 't', description: 'Tenant ID', required: true}),
     client: flags.string({char: 'c', description: 'Client ID', required: true}),
     secret: flags.string({char: 's', description: 'Client secret', required: true}),
-    group: flags.string({char: 'g', description: 'Consumer group'}),
+    group: flags.string({char: 'g', description: 'Consumer group', default: 'data-feed-cli-consumer'}),
 }
 
 module.exports = ConsumeCommand
