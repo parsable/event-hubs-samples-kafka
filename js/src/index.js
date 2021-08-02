@@ -111,7 +111,8 @@ class ConsumeCommand extends Command {
             flags.hub,
             flags.tenant,
             flags.client,
-            flags.secret
+            flags.secret,
+            flags.group
         );
 
         try {
