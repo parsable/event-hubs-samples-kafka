@@ -10,8 +10,9 @@ class DataFeedConsumer {
     clientId;
     clientSecret;
     tokenRequest;
+    fromBeginning;
 
-    constructor(namespace, topic, tenantId, clientId, clientSecret, group) {
+    constructor(namespace, topic, tenantId, clientId, clientSecret, group, fromBeginning) {
         this.namespace = namespace;
         this.topic = topic;
         this.tenantId = tenantId;
@@ -21,6 +22,7 @@ class DataFeedConsumer {
             scopes: ['https://' + this.namespace + '.servicebus.windows.net/.default'],
         };
         this.group = group ? group : 'data-feed-cli-consumer';
+        this.fromBeginning = fromBeginning;
     }
 
     createKafka() {
@@ -59,7 +61,7 @@ class DataFeedConsumer {
 
         const consumer = this.createConsumer();
         await consumer.connect();
-        await consumer.subscribe({topic: this.topic});
+        await consumer.subscribe({topic: this.topic, fromBeginning: this.fromBeginning});
 
         await consumer.run({
             eachMessage: async ({topic, partition, message}) => {
@@ -112,7 +114,8 @@ class ConsumeCommand extends Command {
             flags.tenant,
             flags.client,
             flags.secret,
-            flags.group
+            flags.group,
+            flags['from-beginning']
         );
 
         try {
@@ -137,10 +140,11 @@ ConsumeCommand.flags = {
     client: flags.string({char: 'c', description: 'Client ID', required: true}),
     secret: flags.string({char: 's', description: 'Client secret', required: true}),
     group: flags.string({char: 'g', description: 'Consumer group', default: 'data-feed-cli-consumer'}),
+    'from-beginning': flags.boolean({char: 'b', description: 'Read topic from the beginning', default: false})
 }
 
 ConsumeCommand.examples = [
-    'datafeedconsumer -n my-eventhubs-namespace -h my-hub-name -t 793f32ca-fc7a-499a-ae14-eb5adee63165 -c 8742ab2d-6652-4d1b-a946-ed571f2bd39a -s my-client-secret'
+    'datafeedconsumer -n my-eventhubs-namespace -h my-hub-name -t 793f32ca-fc7a-499a-ae14-eb5adee63165 -c 8742ab2d-6652-4d1b-a946-ed571f2bd39a -s my-client-secret --from-beginning'
 ];
 
 module.exports = ConsumeCommand
