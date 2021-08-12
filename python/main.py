@@ -4,19 +4,19 @@ import time
 from confluent_kafka import KafkaError, KafkaException, Consumer
 from msal import ConfidentialClientApplication
 
-from settings import NAMESPACE, CLIENT_ID, CLIENT_SECRET, TENANT_ID, TOPIC
+from settings import NAMESPACE, CLIENT_ID, CLIENT_SECRET, TENANT_ID, TOPIC, FROM_BEGINNING, CONSUMER_GROUP
 
 running = True
 
 client_app = ConfidentialClientApplication(
     client_id=CLIENT_ID,
     client_credential=CLIENT_SECRET,
-    authority="https://login.microsoftonline.com/" + TENANT_ID
+    authority=f"https://login.microsoftonline.com/{TENANT_ID}"
 )
 
 
 def get_oauth_token(arg):
-    response = client_app.acquire_token_for_client(scopes=["https://" + NAMESPACE + ".servicebus.windows.net/.default"])
+    response = client_app.acquire_token_for_client(scopes=[f'https://{NAMESPACE}.servicebus.windows.net/.default'])
     print("Token acquired")
     return response['access_token'], (time.time() + response['expires_in']) * 1000.0
 
@@ -54,9 +54,12 @@ def shutdown():
 
 
 if __name__ == '__main__':
-    conf = {'bootstrap.servers': NAMESPACE + ".servicebus.windows.net:9093",
-            'group.id': "test-consumer-python",
-            'auto.offset.reset': 'earliest',
+    offset_reset = 'latest'
+    if FROM_BEGINNING:
+        offset_reset = 'earliest'
+    conf = {'bootstrap.servers': f'{NAMESPACE}.servicebus.windows.net:9093',
+            'group.id': CONSUMER_GROUP,
+            'auto.offset.reset': offset_reset,
             'enable.auto.commit': True,
             'security.protocol': 'sasl_ssl',
             'sasl.mechanisms': 'OAUTHBEARER',

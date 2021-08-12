@@ -20,3 +20,7 @@ USAGE
   $ datafeedconsumer COMMAND
 ...
 ```
+To consume from the beginning:
+```shell
+$ datafeedconsumer -n namespace -h hubName -t tenantId -c clientId -s clientSecret -g consumerGroup -b
+```

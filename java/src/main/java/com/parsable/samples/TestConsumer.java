@@ -21,6 +21,8 @@ public class TestConsumer {
     public static final String TENANT_ID = "<REPLACE>";
     public static final String CLIENT_ID = "<REPLACE>";
     public static final String CLIENT_SECRET = "<REPLACE>";
+    public static final String GROUP_NAME = "test-group";
+    public static final String OFFSET_RESET = "latest";
 
     public static void main(String[] args) {
         try (Consumer<String, String> consumer = createConsumer(
@@ -49,8 +51,8 @@ public class TestConsumer {
         Properties properties = new Properties();
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         properties.put(ConsumerConfig.CLIENT_ID_CONFIG, UUID.randomUUID().toString());
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "test-group");
-        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
+        properties.put(ConsumerConfig.GROUP_ID_CONFIG, GROUP_NAME);
+        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, OFFSET_RESET);
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         properties.put(ConsumerConfig.REQUEST_TIMEOUT_MS_CONFIG, 5000);
